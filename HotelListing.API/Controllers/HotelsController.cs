@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
+// This is a simple in-memory implementation of a HotelsController for demonstration purposes. In a real-world application, you would typically use a database and a service layer to handle data access and business logic.
+
 namespace HotelListing.API.Controllers;
 
 [Route("api/[controller]")]
