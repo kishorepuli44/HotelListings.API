@@ -360,4 +360,30 @@ MigrationBackup/
 .ionide/
 
 # Fody - auto-generated XML schema
+
+# ✅ SECURITY: Protect sensitive secrets and configuration
+# User secrets (local development only, never commit)
+**/secrets.json
+**/appsettings.*.secrets.json
+**/appsettings.Production.json
+**/appsettings.Staging.json
+
+# Environment files with secrets
+.env
+.env.local
+.env.*.local
+
+# Key Vault and identity files
+*.pfx
+*.p12
+*.pem
+*.key
+
+# CI/CD secrets
+.github/workflows/secrets/
+SECRETS/
+
+# IDE local secrets
+.vscode/settings.json
+.idea/
 FodyWeavers.xsd

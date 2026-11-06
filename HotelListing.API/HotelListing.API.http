@@ -45,3 +45,45 @@ DELETE {{HotelListing.API_HostAddress}}/api/hotels/{{id}}
 GET {{HotelListing.API_HostAddress}}/api/hotels/{{id}}
 
 ###
+
+### Countries Endpoints
+
+GET {{HotelListing.API_HostAddress}}/api/countries
+Accept: application/json
+
+###
+
+POST {{HotelListing.API_HostAddress}}/api/countries
+Content-Type: application/json
+
+{
+  "id": 6,
+  "name": "Germany",
+  "code": "DE",
+  "region": "Europe"
+}
+
+###
+
+@countryId=1
+GET {{HotelListing.API_HostAddress}}/api/countries/{{countryId}}
+Accept: application/json
+
+###
+
+PUT {{HotelListing.API_HostAddress}}/api/countries/{{countryId}}
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "United States of America",
+  "code": "US",
+  "region": "North America"
+}
+
+###
+
+DELETE {{HotelListing.API_HostAddress}}/api/countries/{{countryId}}
+
+###
+

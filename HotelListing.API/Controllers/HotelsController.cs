@@ -1,4 +1,5 @@
 ﻿using HotelListing.API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -20,6 +21,7 @@ public class HotelsController : ControllerBase
 
     // GET: api/<HotelsController>
     [HttpGet]
+    [AllowAnonymous]  // ✅ Explicitly allow public read access
     public ActionResult<IEnumerable<Hotel>> Get()
     {
         return Ok(hotels);
@@ -27,6 +29,7 @@ public class HotelsController : ControllerBase
 
     // GET api/<HotelsController>/5
     [HttpGet("{id}")]
+    [AllowAnonymous]  // ✅ Explicitly allow public read access
     public ActionResult<Hotel> Get(int id)
     {
         var hotel = hotels.FirstOrDefault(h => h.Id == id);
@@ -39,6 +42,7 @@ public class HotelsController : ControllerBase
 
     // POST api/<HotelsController>
     [HttpPost]
+    [Authorize(Roles = "Admin")]  // ✅ Require Admin role
     public ActionResult<Hotel> Post([FromBody] Hotel newHotel)
     {
         if (newHotel == null)
@@ -56,6 +60,7 @@ public class HotelsController : ControllerBase
 
     // PUT api/<HotelsController>/5
     [HttpPut("{id}")]
+    [Authorize(Roles = "Admin")]  // ✅ Require Admin role
     public ActionResult Put(int id, [FromBody] Hotel updatedHotel)
     {
         var hotel = hotels.FirstOrDefault(h => h.Id == id);
@@ -64,7 +69,7 @@ public class HotelsController : ControllerBase
         {
             return NotFound();
         }
-        
+
         hotel.Name = updatedHotel.Name;
         hotel.Address = updatedHotel.Address;
         hotel.Rating = updatedHotel.Rating;
@@ -74,6 +79,7 @@ public class HotelsController : ControllerBase
 
     // DELETE api/<HotelsController>/5
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin")]  // ✅ Require Admin role
     public ActionResult Delete(int id)
     {
         var hotel = hotels.FirstOrDefault(h => h.Id == id);
